@@ -37,8 +37,8 @@ String aidT="";
 ESP8266WebServer server(80); //Server on port 80
 
 
-
-const char MAIN_page[] PROGMEM = R"=====(
+//Variable which contains the HTML Code to be renderd when the homepage is requested
+const char MAIN_page[] PROGMEM = R"=====( 
 <!DOCTYPE html>
 <html>
 <body>
@@ -66,7 +66,7 @@ const char MAIN_page[] PROGMEM = R"=====(
 
 
 
-//Home Page 
+// Display Home Page 
 void handleRoot() {
 
  //Serial.println("You called root page");
@@ -78,12 +78,12 @@ void handleRoot() {
 
 //Helper Functions
 
-void messageSender(){
+void messageSender(){   //Open Message Sent Webpage
 String messageSent="<center><h1>Message Sent</h1><br><a href=\"http://192.168.4.1\">Back</a></center>";
 server.send(200, "text/html", messageSent); 
 }
 
-void setType(int index,int type){
+void setType(int index,int type {      //To set the content of the Data Pages
 //Type 0 -Disaster
 //Type 1 -Aid
 String insert;
@@ -101,7 +101,7 @@ String insert;
 
 
 //Disaster Setter
-void ledOn(){
+void ledOn(){    //Led Turns On when the source sends a request
   digitalWrite(D1,HIGH);
 }
 void disasterOp1() { 
@@ -175,8 +175,8 @@ setType(4,1);
 ledOn();
 }
 
-//Disaster Viewer
-void ledOff(){
+//Target Disaster Viewer
+void ledOff(){       // LED turns off when the target accesses the webpage /DisasterType or /AidType
   digitalWrite(D1,LOW);
  
 }
